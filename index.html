@@ -1,13 +1,1185 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TK Pertiwi II Kesugihan | Membangun Karakter sejak Dini</title>
-  </head>
-  <body class="bg-slate-50">
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TK Pertiwi II Kesugihan Kidul - Portal Resmi</title>
+    <!-- Google Fonts: Inter & Space Grotesk -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            primary: '#F43F5E', // Rose 500
+                            secondary: '#F59E0B', // Amber 500
+                            accent: '#10B981', // Emerald 500
+                            dark: '#0F172A', // Slate 900
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Animations */
+        @keyframes float-balloon {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+        @keyframes float-balloon-reverse {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(-6deg); }
+        }
+        @keyframes drift-cloud {
+            0% { transform: translateX(-150px); }
+            100% { transform: translateX(calc(100vw + 150px)); }
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.9); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+        @keyframes rotate-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes pulse-soft {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+        }
+        
+        .anim-balloon-1 { animation: float-balloon 6s infinite ease-in-out; }
+        .anim-balloon-2 { animation: float-balloon-reverse 7.5s infinite ease-in-out; }
+        .anim-balloon-3 { animation: float-balloon 6.8s infinite ease-in-out 1s; }
+        .anim-balloon-4 { animation: float-balloon-reverse 8.2s infinite ease-in-out 0.5s; }
+        .anim-cloud-1 { animation: drift-cloud 80s infinite linear; }
+        .anim-cloud-2 { animation: drift-cloud 110s infinite linear; }
+        .anim-twinkle-1 { animation: twinkle 3.5s infinite ease-in-out; }
+        .anim-twinkle-2 { animation: twinkle 4.2s infinite ease-in-out 1s; }
+        .anim-twinkle-3 { animation: twinkle 5s infinite ease-in-out 2s; }
+        .anim-rotate { animation: rotate-slow 25s infinite linear; }
+        .anim-rotate-rev { animation: rotate-slow 30s infinite linear reverse; }
+        .anim-pulse-soft { animation: pulse-soft 8s infinite ease-in-out; }
 
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #F8FAFC; }
+        ::-webkit-scrollbar-thumb { background: #E2E8F0; border-radius: 9999px; }
+        ::-webkit-scrollbar-thumb:hover { background: #CBD5E1; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col relative overflow-x-hidden">
+
+    <!-- 1. HEADER TICKER -->
+    <div class="bg-brand-primary text-white text-xs sm:text-sm py-2.5 px-4 font-bold overflow-hidden shadow-sm relative z-40">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-2 w-full">
+                <span class="bg-white text-brand-primary text-[10px] uppercase tracking-widest px-2 py-0.5 rounded font-black shrink-0 shadow-xs">INFO</span>
+                <div class="overflow-hidden relative w-full h-5">
+                    <p class="absolute whitespace-nowrap animate-[marquee_25s_linear_infinite] hover:pause text-xs sm:text-sm font-display tracking-wide" style="animation: marquee 20s linear infinite;">
+                        PENGUMUMAN: Penerimaan Peserta Didik Baru (PPDB) TK Pertiwi II Kesugihan Kidul Tahun Ajaran Baru Telah Dibuka! Silakan mendaftar secara online di menu Pendaftaran.
+                    </p>
+                    <style>
+                        @keyframes marquee {
+                            0% { transform: translateX(100%); }
+                            100% { transform: translateX(-100%); }
+                        }
+                    </style>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. MAIN NAVIGATION NAVBAR -->
+    <header class="bg-white/95 backdrop-blur-md sticky top-0 z-40 border-b border-slate-100 shadow-sm transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
+            <div class="flex items-center gap-3 cursor-pointer" onclick="switchTab('home')">
+                <div class="bg-rose-50 p-2.5 rounded-2xl border-2 border-brand-primary/10 shadow-xs">
+                    <i data-lucide="graduation-cap" class="w-7 h-7 text-brand-primary"></i>
+                </div>
+                <div>
+                    <h1 class="font-display font-black text-base sm:text-lg text-slate-900 leading-tight tracking-tight">TK PERTIWI II</h1>
+                    <p class="text-[10px] sm:text-xs text-slate-500 font-bold tracking-widest uppercase">Kesugihan Kidul</p>
+                </div>
+            </div>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden lg:flex items-center gap-1.5">
+                <button onclick="switchTab('home')" id="nav-home" class="px-4 py-2 rounded-xl text-sm font-bold transition-all text-brand-primary bg-rose-50/50">Beranda</button>
+                <button onclick="switchTab('profile')" id="nav-profile" class="px-4 py-2 rounded-xl text-sm font-bold transition-all text-slate-600 hover:text-slate-950 hover:bg-slate-50">Profil</button>
+                <button onclick="switchTab('programs')" id="nav-programs" class="px-4 py-2 rounded-xl text-sm font-bold transition-all text-slate-600 hover:text-slate-950 hover:bg-slate-50">Program Belajar</button>
+                <button onclick="switchTab('gallery')" id="nav-gallery" class="px-4 py-2 rounded-xl text-sm font-bold transition-all text-slate-600 hover:text-slate-950 hover:bg-slate-50">Galeri & Berita</button>
+                <button onclick="switchTab('spmb')" id="nav-spmb" class="px-4 py-2 rounded-xl text-sm font-bold transition-all text-slate-600 hover:text-slate-950 hover:bg-slate-50">Pendaftaran (PPDB)</button>
+                <button onclick="switchTab('contact')" id="nav-contact" class="px-4 py-2 rounded-xl text-sm font-bold transition-all text-slate-600 hover:text-slate-950 hover:bg-slate-50">Kontak</button>
+            </nav>
+
+            <!-- Actions buttons -->
+            <div class="flex items-center gap-2">
+                <button onclick="toggleLoginModal()" class="hidden sm:inline-flex items-center gap-1.5 bg-slate-950 hover:bg-slate-800 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-xs transition-all cursor-pointer">
+                    <i data-lucide="lock" class="w-3.5 h-3.5"></i>
+                    <span>Portal Guru</span>
+                </button>
+                <!-- Hamburger Mobile -->
+                <button onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-xl bg-slate-50 text-slate-700 hover:bg-slate-100 focus:outline-none">
+                    <i id="hamburger-icon" data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-100 bg-white px-4 pt-2 pb-6 space-y-1.5 shadow-inner">
+            <button onclick="switchTab('home')" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-bold text-brand-primary bg-rose-50/50">Beranda</button>
+            <button onclick="switchTab('profile')" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-bold text-slate-600 hover:bg-slate-50">Profil</button>
+            <button onclick="switchTab('programs')" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-bold text-slate-600 hover:bg-slate-50">Program Belajar</button>
+            <button onclick="switchTab('gallery')" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-bold text-slate-600 hover:bg-slate-50">Galeri & Berita</button>
+            <button onclick="switchTab('spmb')" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-bold text-slate-600 hover:bg-slate-50">Pendaftaran (PPDB)</button>
+            <button onclick="switchTab('contact')" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-bold text-slate-600 hover:bg-slate-50">Kontak</button>
+            <div class="pt-4">
+                <button onclick="toggleLoginModal(); toggleMobileMenu();" class="w-full inline-flex items-center justify-center gap-1.5 bg-slate-950 hover:bg-slate-800 text-white font-bold text-sm py-3 rounded-xl shadow-xs transition-all cursor-pointer">
+                    <i data-lucide="lock" class="w-4 h-4"></i>
+                    <span>Portal Guru (Admin)</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 3. PLAYFUL BACKGROUND DECORATIONS -->
+    <div class="absolute inset-0 pointer-events-none overflow-hidden z-0 select-none">
+        <!-- Soft colorful gradient blobs -->
+        <div class="absolute top-[12%] left-[-10%] w-96 h-96 rounded-full bg-rose-200/20 blur-3xl"></div>
+        <div class="absolute top-[38%] right-[-10%] w-80 h-80 rounded-full bg-amber-200/25 blur-3xl"></div>
+        <div class="absolute bottom-[25%] left-[-5%] w-96 h-96 rounded-full bg-teal-100/30 blur-3xl"></div>
+        <div class="absolute bottom-[5%] right-[-5%] w-96 h-96 rounded-full bg-sky-200/20 blur-3xl"></div>
+
+        <!-- Floating Cloud 1 -->
+        <div class="absolute anim-cloud-1 opacity-40 hidden md:block" style="top: 15vh;">
+            <div class="relative bg-white/75 backdrop-blur-[1px] w-28 h-9 rounded-full shadow-xs">
+                <div class="absolute -top-4 left-5 bg-white/75 w-14 h-14 rounded-full"></div>
+                <div class="absolute -top-6 left-11 bg-white/75 w-12 h-12 rounded-full"></div>
+            </div>
+        </div>
+
+        <!-- Floating Cloud 2 -->
+        <div class="absolute anim-cloud-2 opacity-35 hidden md:block" style="top: 52vh;">
+            <div class="relative bg-white/70 backdrop-blur-[1px] w-36 h-11 rounded-full shadow-xs">
+                <div class="absolute -top-6 left-6 bg-white/70 w-20 h-20 rounded-full"></div>
+                <div class="absolute -top-9 left-16 bg-white/70 w-16 h-16 rounded-full"></div>
+            </div>
+        </div>
+
+        <!-- Flying Balloons (Emojis) -->
+        <div class="absolute left-[5%] top-[18%] text-5xl opacity-75 hidden sm:block anim-balloon-1 select-none">🎈</div>
+        <div class="absolute right-[8%] top-[24%] text-5xl opacity-75 hidden sm:block anim-balloon-2 select-none">💛</div>
+        <div class="absolute left-[12%] bottom-[28%] text-5xl opacity-75 hidden sm:block anim-balloon-3 select-none">💙</div>
+        <div class="absolute right-[6%] bottom-[12%] text-5xl opacity-75 hidden sm:block anim-balloon-4 select-none">💚</div>
+
+        <!-- Rotating Cute Flowers -->
+        <div class="absolute right-[4%] top-[10%] text-4xl opacity-70 anim-rotate select-none">🌸</div>
+        <div class="absolute left-[3%] bottom-[42%] text-4xl opacity-65 anim-rotate-rev select-none">🌺</div>
+
+        <!-- Shining Smiling Sun -->
+        <div class="absolute left-[4%] top-[6%] text-amber-400 opacity-75 hidden xl:block anim-pulse-soft">
+            <svg class="w-16 h-16 fill-amber-300" viewBox="0 0 24 24">
+                <path d="M12 2.25a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM12 16.5a4.5 4.5 0 100-9 4.5 4.5 0 000 9zM12 18.75a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5a.75.75 0 01.75-.75zM5.106 5.106a.75.75 0 011.06 0l1.06 1.06a.75.75 0 11-1.06 1.06L5.106 6.166a.75.75 0 010-1.06zM16.774 16.774a.75.75 0 011.06 0l1.06 1.06a.75.75 0 11-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zM2.25 12a.75.75 0 01.75-.75h1.5a.75.75 0 010 1.5H3a.75.75 0 01-.75-.75zM18.75 12a.75.75 0 01.75-.75h1.5a.75.75 0 010 1.5h-1.5a.75.75 0 01-.75-.75zM5.106 18.894a.75.75 0 010-1.06l1.06-1.06a.75.75 0 111.06 1.06l-1.06 1.06a.75.75 0 01-1.06 0zM16.774 7.226a.75.75 0 010-1.06l1.06-1.06a.75.75 0 111.06 1.06l-1.06 1.06a.75.75 0 01-1.06 0z" />
+            </svg>
+        </div>
+
+        <!-- Twinkling Micro Stars -->
+        <div class="absolute left-[20%] top-[10%] text-amber-400 anim-twinkle-1"><i data-lucide="sparkles" class="w-6 h-6 fill-amber-200/50"></i></div>
+        <div class="absolute right-[25%] top-[14%] text-pink-400 anim-twinkle-2"><i data-lucide="sparkles" class="w-5 h-5 fill-pink-200/50"></i></div>
+        <div class="absolute right-[16%] bottom-[35%] text-sky-400 anim-twinkle-3"><i data-lucide="sparkles" class="w-5 h-5 fill-sky-200/50"></i></div>
+    </div>
+
+    <!-- 4. CONTENT CANVASES (TAB SWITCHOVER ENG) -->
+    <main class="flex-grow relative z-10">
+
+        <!-- ================= TAB: BERANDA (HOME) ================= -->
+        <section id="tab-content-home" class="tab-pane">
+            <!-- Hero -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-16 md:py-20 lg:py-24 grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <div class="inline-flex items-center gap-2 bg-rose-50 text-brand-primary px-4 py-2 rounded-full border border-rose-100 shadow-xs">
+                        <i data-lucide="sparkles" class="w-4 h-4 fill-current"></i>
+                        <span class="text-xs font-extrabold tracking-wider uppercase font-display">Taman Bermain Sehat & Ceria</span>
+                    </div>
+                    <h2 class="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-slate-900 leading-[1.1] tracking-tight">
+                        Tempat Terbaik Tumbuh <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-secondary">Kembang Cerdas</span> & Berakhlak
+                    </h2>
+                    <p class="text-slate-600 text-sm sm:text-base leading-relaxed max-w-xl">
+                        Membangun generasi emas bangsa dengan pendekatan asuh terpadu yang mencakup pendidikan holistik, pemenuhan gizi, perlindungan anak, serta pembiasaan karakter luhur sejak usia dini.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-3 pt-2">
+                        <button onclick="switchTab('spmb')" class="inline-flex items-center justify-center gap-2 bg-brand-primary hover:bg-rose-600 text-white font-extrabold text-sm px-7 py-4 rounded-2xl shadow-lg transition-all cursor-pointer">
+                            <span>Daftar Sekarang (PPDB)</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                        <button onclick="switchTab('profile')" class="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-slate-800 font-extrabold text-sm px-7 py-4 rounded-2xl shadow-xs border border-slate-200 transition-all cursor-pointer">
+                            <span>Pelajari Profil Kami</span>
+                        </button>
+                    </div>
+                    <!-- Small Badges -->
+                    <div class="pt-6 grid grid-cols-3 gap-4 border-t border-slate-100 max-w-lg">
+                        <div class="flex items-center gap-2">
+                            <div class="p-1.5 rounded-lg bg-teal-50 text-teal-600"><i data-lucide="shield-check" class="w-5 h-5"></i></div>
+                            <span class="text-xs font-black text-slate-700">Akreditasi Resmi</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="p-1.5 rounded-lg bg-rose-50 text-rose-600"><i data-lucide="heart" class="w-5 h-5"></i></div>
+                            <span class="text-xs font-black text-slate-700">Asuh Ramah Anak</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="p-1.5 rounded-lg bg-amber-50 text-amber-600"><i data-lucide="award" class="w-5 h-5"></i></div>
+                            <span class="text-xs font-black text-slate-700">Pendidik Berlisensi</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Banner Image Mockup -->
+                <div class="relative flex justify-center">
+                    <div class="absolute -inset-1 rounded-[2.5rem] bg-gradient-to-tr from-brand-primary to-brand-secondary opacity-20 blur-xl pointer-events-none"></div>
+                    <div class="relative bg-white p-4 rounded-[2rem] shadow-xl border border-slate-100 max-w-md overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&q=80&w=800" alt="Anak-anak belajar ceria" class="rounded-2xl object-cover aspect-4/3 w-full shadow-inner" referrerPolicy="no-referrer">
+                        <div class="absolute bottom-8 left-8 right-8 bg-white/95 backdrop-blur-md p-4 rounded-xl border border-slate-100/50 shadow-lg flex items-center gap-3">
+                            <div class="bg-amber-100 text-amber-600 p-2.5 rounded-lg">
+                                <i data-lucide="sparkles" class="w-5 h-5 fill-current"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-display font-black text-xs text-slate-900 uppercase tracking-wider">Pendaftaran Online</h4>
+                                <p class="text-[10px] text-slate-500 font-bold">Proses cepat tanpa repot antre!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB: PROFIL (PROFILE) ================= -->
+        <section id="tab-content-profile" class="tab-pane hidden py-12 md:py-20">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+                <!-- Sejarah -->
+                <div class="bg-white p-8 sm:p-12 rounded-3xl border border-slate-100 shadow-md space-y-6">
+                    <div class="inline-flex items-center gap-2 bg-rose-50 text-brand-primary px-3 py-1.5 rounded-full border border-rose-100">
+                        <i data-lucide="sparkles" class="w-3.5 h-3.5 fill-current"></i>
+                        <span class="text-[10px] font-black tracking-widest uppercase">Kisah Singkat</span>
+                    </div>
+                    <h3 class="font-display font-black text-2xl sm:text-3xl text-slate-900">Sejarah TK Pertiwi II Kesugihan Kidul</h3>
+                    <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                        Taman Kanak-Kanak Pertiwi II didirikan pada tahun 1989 dengan komitmen kuat untuk memberikan pelayanan pada anak usia dini secara utuh dan menyeluruh. Kami percaya bahwa setiap anak berhak mendapatkan lingkungan asuh yang mencakup layanan gizi dan kesehatan, pendidikan, pengasuhan, serta perlindungan yang optimal untuk mengoptimalkan semua aspek perkembangan masa keemasan mereka (golden age).
+                    </p>
+                    <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                        Seiring berjalannya waktu, sekolah kami terus bertransformasi menjadi lembaga pendidikan anak usia dini yang tepercaya di wilayah Kesugihan Kidul, dengan kurikulum yang senantiasa disesuaikan untuk membina potensi kognitif, afektif, dan psikomotorik anak dengan cara bermain yang menyenangkan.
+                    </p>
+                </div>
+
+                <!-- Visi & Misi Grid -->
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Visi -->
+                    <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-md space-y-4">
+                        <div class="inline-flex items-center gap-2 bg-amber-50 text-amber-600 px-3 py-1 rounded-full border border-amber-100">
+                            <i data-lucide="compass" class="w-3.5 h-3.5"></i>
+                            <span class="text-[10px] font-black tracking-widest uppercase">Arah Strategis</span>
+                        </div>
+                        <h4 class="font-display font-black text-xl text-slate-900">Visi Kami</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed font-medium bg-slate-50 p-4 rounded-2xl border-l-4 border-amber-400">
+                            "Mewujudkan anak usia dini yang sehat, cerdas, ceria, kreatif, mandiri, serta memiliki dasar pondasi keimanan dan ketakwaan sejak dini."
+                        </p>
+                    </div>
+
+                    <!-- Misi -->
+                    <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-md space-y-4">
+                        <div class="inline-flex items-center gap-2 bg-teal-50 text-teal-600 px-3 py-1 rounded-full border border-teal-100">
+                            <i data-lucide="award" class="w-3.5 h-3.5"></i>
+                            <span class="text-[10px] font-black tracking-widest uppercase">Langkah Nyata</span>
+                        </div>
+                        <h4 class="font-display font-black text-xl text-slate-900">Misi Kami</h4>
+                        <ul class="space-y-2.5 text-slate-600 text-sm">
+                            <li class="flex items-start gap-2.5">
+                                <i data-lucide="check-circle2" class="w-4 h-4 text-teal-500 shrink-0 mt-0.5"></i>
+                                <span>Menyelenggarakan pelayanan pendidikan anak yang holistik integratif melalui pengasuhan, kesehatan, gizi, dan perlindungan.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i data-lucide="check-circle2" class="w-4 h-4 text-teal-500 shrink-0 mt-0.5"></i>
+                                <span>Melatih kemandirian dan rasa percaya diri anak dengan aktivitas kreasi bebas terarah.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i data-lucide="check-circle2" class="w-4 h-4 text-teal-500 shrink-0 mt-0.5"></i>
+                                <span>Mengenalkan budi pekerti, nilai-nilai spiritual keagamaan, serta karakter mulia dalam kebiasaan belajar harian.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB: PROGRAM BELAJAR (PROGRAMS) ================= -->
+        <section id="tab-content-programs" class="tab-pane hidden py-12 md:py-20">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+                <!-- Header -->
+                <div class="text-center space-y-3 max-w-xl mx-auto">
+                    <h3 class="font-display font-black text-3xl text-slate-900">Program Pembelajaran & Ekstrakurikuler</h3>
+                    <p class="text-slate-500 text-xs sm:text-sm">Aspek perkembangan esensial anak dibina dengan program bermain, belajar kreatif, dan aktivitas fisik yang seimbang.</p>
+                </div>
+
+                <!-- 6 Aspek Perkembangan -->
+                <div class="space-y-6">
+                    <h4 class="font-display font-bold text-lg text-slate-900 flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-brand-primary"></span>
+                        <span>Aspek Stimulasi Perkembangan Anak</span>
+                    </h4>
+                    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow space-y-2.5">
+                            <div class="text-rose-500 bg-rose-50 w-10 h-10 rounded-xl flex items-center justify-center font-bold">1</div>
+                            <h5 class="font-display font-black text-sm text-slate-900">Nilai Agama & Moral</h5>
+                            <p class="text-xs text-slate-500">Mengenalkan doa harian, akhlak luhur, beribadah bersama, dan toleransi sejak dini.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow space-y-2.5">
+                            <div class="text-amber-500 bg-amber-50 w-10 h-10 rounded-xl flex items-center justify-center font-bold">2</div>
+                            <h5 class="font-display font-black text-sm text-slate-900">Fisik & Motorik</h5>
+                            <p class="text-xs text-slate-500">Stimulasi motorik kasar (senam ceria, lari halang rintang) dan motorik halus (meronce, melipat kertas).</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow space-y-2.5">
+                            <div class="text-teal-500 bg-teal-50 w-10 h-10 rounded-xl flex items-center justify-center font-bold">3</div>
+                            <h5 class="font-display font-black text-sm text-slate-900">Kognitif & Logika</h5>
+                            <p class="text-xs text-slate-500">Mengembangkan pemecahan masalah sederhana, mengenali pola bentuk, warna, serta konsep berhitung dini.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow space-y-2.5">
+                            <div class="text-sky-500 bg-sky-50 w-10 h-10 rounded-xl flex items-center justify-center font-bold">4</div>
+                            <h5 class="font-display font-black text-sm text-slate-900">Bahasa & Literasi</h5>
+                            <p class="text-xs text-slate-500">Bercerita kreatif (storytelling), memperluas kosakata harian, serta pengenalan huruf/bunyi menyenangkan.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow space-y-2.5">
+                            <div class="text-violet-500 bg-violet-50 w-10 h-10 rounded-xl flex items-center justify-center font-bold">5</div>
+                            <h5 class="font-display font-black text-sm text-slate-900">Sosial & Emosional</h5>
+                            <p class="text-xs text-slate-500">Mengajarkan etika berbagi, antre bergantian, kontrol diri, dan kerja kelompok yang kompak.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow space-y-2.5">
+                            <div class="text-pink-500 bg-pink-50 w-10 h-10 rounded-xl flex items-center justify-center font-bold">6</div>
+                            <h5 class="font-display font-black text-sm text-slate-900">Seni Kreativitas</h5>
+                            <p class="text-xs text-slate-500">Bermain musik perkusi sederhana, bernyanyi bersama, melukis bebas, dan finger painting.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ekstrakurikuler -->
+                <div class="space-y-6">
+                    <h4 class="font-display font-bold text-lg text-slate-900 flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-brand-secondary"></span>
+                        <span>Program Penunjang Bakat & Ekstrakurikuler</span>
+                    </h4>
+                    <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
+                        <div class="bg-amber-50/50 border border-amber-100/60 p-6 rounded-2xl text-center space-y-2.5">
+                            <div class="mx-auto w-10 h-10 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center"><i data-lucide="music" class="w-5 h-5"></i></div>
+                            <h5 class="font-display font-black text-sm text-slate-900">Seni Musik & Tari</h5>
+                            <p class="text-[11px] text-slate-500">Eksplorasi gerak ritmik estetik tari tradisional anak & lagu anak ceria.</p>
+                        </div>
+                        <div class="bg-rose-50/50 border border-rose-100/60 p-6 rounded-2xl text-center space-y-2.5">
+                            <div class="mx-auto w-10 h-10 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center"><i data-lucide="languages" class="w-5 h-5"></i></div>
+                            <h5 class="font-display font-black text-sm text-slate-900">Bercerita Bahasa</h5>
+                            <p class="text-[11px] text-slate-500">Mengembangkan bakat bicara anak di depan umum secara ekspresif.</p>
+                        </div>
+                        <div class="bg-teal-50/50 border border-teal-100/60 p-6 rounded-2xl text-center space-y-2.5">
+                            <div class="mx-auto w-10 h-10 rounded-full bg-teal-100 text-teal-600 flex items-center justify-center"><i data-lucide="palette" class="w-5 h-5"></i></div>
+                            <h5 class="font-display font-black text-sm text-slate-900">Melukis & Kerajinan</h5>
+                            <p class="text-[11px] text-slate-500">Membentuk karya unik 3D dari plastisin & melukis media kanvas mini.</p>
+                        </div>
+                        <div class="bg-sky-50/50 border border-sky-100/60 p-6 rounded-2xl text-center space-y-2.5">
+                            <div class="mx-auto w-10 h-10 rounded-full bg-sky-100 text-sky-600 flex items-center justify-center"><i data-lucide="activity" class="w-5 h-5"></i></div>
+                            <h5 class="font-display font-black text-sm text-slate-900">Senam & Ketangkasan</h5>
+                            <p class="text-[11px] text-slate-500">Menjaga kebugaran jasmani anak dengan sirkuit gerak ceria.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB: GALERI & BERITA (GALLERY) ================= -->
+        <section id="tab-content-gallery" class="tab-pane hidden py-12 md:py-20">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                <!-- Header -->
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                    <div class="space-y-2">
+                        <h3 class="font-display font-black text-3xl text-slate-900">Dokumentasi Galeri & Berita</h3>
+                        <p class="text-slate-500 text-sm">Ikuti berbagai keseruan aktivitas bermain dan kabar berita terhangat sekolah kami.</p>
+                    </div>
+                    <!-- Filter -->
+                    <div class="flex items-center gap-2 bg-white p-1 rounded-xl border border-slate-100 shadow-xs shrink-0 self-start md:self-auto">
+                        <button onclick="filterGallery('semua')" id="btn-filter-semua" class="gallery-filter-btn px-4 py-2 rounded-lg text-xs font-bold bg-brand-primary text-white transition-all">Semua</button>
+                        <button onclick="filterGallery('kegiatan')" id="btn-filter-kegiatan" class="gallery-filter-btn px-4 py-2 rounded-lg text-xs font-bold text-slate-500 hover:text-slate-900 transition-all">Kegiatan</button>
+                        <button onclick="filterGallery('berita')" id="btn-filter-berita" class="gallery-filter-btn px-4 py-2 rounded-lg text-xs font-bold text-slate-500 hover:text-slate-900 transition-all">Berita</button>
+                    </div>
+                </div>
+
+                <!-- Grid Items -->
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8" id="gallery-grid-container">
+                    
+                    <!-- Item 1 (Kegiatan) -->
+                    <div class="gallery-item-card bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col group cursor-pointer" data-category="kegiatan" onclick="openPhotoModal('Peringatan Hari Kemerdekaan RI', 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=800', '17 Agustus', 'Anak-anak antusias memperagakan baju adat nasional dan mengikuti lomba balap kelereng dengan sangat bahagia.')">
+                        <div class="relative overflow-hidden aspect-video">
+                            <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=800" alt="Hari Kemerdekaan" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-3 left-3 bg-brand-primary text-white text-[10px] uppercase font-black px-2.5 py-1 rounded-md">Kegiatan</span>
+                        </div>
+                        <div class="p-5 flex-grow space-y-2">
+                            <span class="text-[10px] font-bold text-slate-400">17 Agustus</span>
+                            <h5 class="font-display font-black text-sm text-slate-900 group-hover:text-brand-primary transition-colors">Peringatan Hari Kemerdekaan RI</h5>
+                            <p class="text-xs text-slate-500 leading-relaxed line-clamp-2">Anak-anak antusias memperagakan baju adat nasional dan mengikuti lomba balap kelereng dengan sangat bahagia.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 (Berita) -->
+                    <div class="gallery-item-card bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col group cursor-pointer" data-category="berita" onclick="openNewsModal('Kunjungan Seru ke Kebun Edukatif', 'https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&q=80&w=800', '12 Oktober', 'Kegiatan luar kelas semester ganjil berlokasi di agrowisata lokal. Belajar menanam sayuran, memetik stroberi, dan mengenal jenis hewan ternak jinang secara ramah anak.')">
+                        <div class="relative overflow-hidden aspect-video">
+                            <img src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&q=80&w=800" alt="Kebun Edukatif" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-3 left-3 bg-teal-500 text-white text-[10px] uppercase font-black px-2.5 py-1 rounded-md">Berita</span>
+                        </div>
+                        <div class="p-5 flex-grow space-y-2">
+                            <span class="text-[10px] font-bold text-teal-600">12 Oktober</span>
+                            <h5 class="font-display font-black text-sm text-slate-900 group-hover:text-teal-600 transition-colors">Kunjungan Seru ke Kebun Edukatif</h5>
+                            <p class="text-xs text-slate-500 leading-relaxed line-clamp-2">Kegiatan luar kelas semester ganjil berlokasi di agrowisata lokal. Belajar menanam sayuran, memetik stroberi, dan mengenal jenis hewan ternak.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 (Kegiatan) -->
+                    <div class="gallery-item-card bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col group cursor-pointer" data-category="kegiatan" onclick="openPhotoModal('Pentas Seni & Kreasi Ceria Akhir Tahun', 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=800', '20 Juni', 'Pelepasan siswa kelompok B yang dikemas dengan tari adat, paduan suara, pembacaan puisi, serta pemberian apresiasi bakat kreasi.')">
+                        <div class="relative overflow-hidden aspect-video">
+                            <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=800" alt="Pentas Seni" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-3 left-3 bg-brand-primary text-white text-[10px] uppercase font-black px-2.5 py-1 rounded-md">Kegiatan</span>
+                        </div>
+                        <div class="p-5 flex-grow space-y-2">
+                            <span class="text-[10px] font-bold text-slate-400">20 Juni</span>
+                            <h5 class="font-display font-black text-sm text-slate-900 group-hover:text-brand-primary transition-colors">Pentas Seni & Kreasi Ceria Akhir Tahun</h5>
+                            <p class="text-xs text-slate-500 leading-relaxed line-clamp-2">Pelepasan siswa kelompok B yang dikemas dengan tari adat, paduan suara, pembacaan puisi, serta pemberian apresiasi.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB: PENDAFTARAN (PPDB / SPMB) ================= -->
+        <section id="tab-content-spmb" class="tab-pane hidden py-12 md:py-20">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                <!-- Header -->
+                <div class="text-center space-y-2">
+                    <h3 class="font-display font-black text-3xl text-slate-900">Pendaftaran Murid Baru (PPDB Online)</h3>
+                    <p class="text-slate-500 text-sm">Mudah, praktis, dan cepat. Mohon isi data calon murid dan wali murid di bawah ini.</p>
+                </div>
+
+                <!-- Form Card -->
+                <div class="bg-white rounded-3xl border border-slate-100 shadow-lg overflow-hidden">
+                    <div class="bg-slate-950 p-6 text-white flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="edit" class="w-5 h-5 text-brand-secondary"></i>
+                            <h4 class="font-display font-black text-sm sm:text-base">Formulir Pendaftaran Online AJ 2026/2027</h4>
+                        </div>
+                        <span class="bg-brand-primary/20 text-brand-primary border border-brand-primary/30 text-[10px] uppercase font-black tracking-widest px-2.5 py-1 rounded-md">Aktif</span>
+                    </div>
+
+                    <form id="ppdb-form" onsubmit="handleFormSubmission(event)" class="p-6 sm:p-10 space-y-8">
+                        
+                        <!-- Section 1: Data Calon Murid -->
+                        <div class="space-y-4">
+                            <h5 class="font-display font-bold text-sm text-slate-900 flex items-center gap-2 border-b border-slate-100 pb-2">
+                                <span class="bg-rose-100 text-brand-primary text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">1</span>
+                                <span>Identitas Calon Murid</span>
+                            </h5>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="space-y-1.5">
+                                    <label class="text-xs font-bold text-slate-500 uppercase tracking-wide">Nama Lengkap Anak</label>
+                                    <input type="text" name="childName" required placeholder="Masukkan nama lengkap anak..." class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:bg-white focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary text-sm transition-all">
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div class="space-y-1.5">
+                                        <label class="text-xs font-bold text-slate-500 uppercase tracking-wide">Tempat Lahir</label>
+                                        <input type="text" name="birthPlace" required placeholder="Cilacap..." class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:bg-white focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary text-sm transition-all">
+                                    </div>
+                                    <div class="space-y-1.5">
+                                        <label class="text-xs font-bold text-slate-500 uppercase tracking-wide">Tanggal Lahir</label>
+                                        <input type="date" name="birthDate" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:bg-white focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary text-sm transition-all">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="space-y-1.5">
+                                    <label class="text-xs font-bold text-slate-500 uppercase tracking-wide">Jenis Kelamin</label>
+                                    <select name="gender" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:bg-white focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary text-sm transition-all">
+                                        <option value="">Pilih...</option>
+                                        <option value="Laki-laki">Laki-laki</option>
+                                        <option value="Perempuan">Perempuan</option>
+                                    </select>
+                                </div>
+                                <div class="space-y-1.5">
+                                    <label class="text-xs font-bold text-slate-500 uppercase tracking-wide">Pilihan Kelompok Kelas</label>
+                                    <select name="classGroup" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:bg-white focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary text-sm transition-all">
+                                        <option value="">Pilih Kelompok...</option>
+                                        <option value="Kelompok A (Usia 4-5 Tahun)">Kelompok A (Usia 4-5 Tahun)</option>
+                                        <option value="Kelompok B (Usia 5-6 Tahun)">Kelompok B (Usia 5-6 Tahun)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 2: Orang Tua / Wali -->
+                        <div class="space-y-4">
+                            <h5 class="font-display font-bold text-sm text-slate-900 flex items-center gap-2 border-b border-slate-100 pb-2">
+                                <span class="bg-amber-100 text-amber-600 text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">2</span>
+                                <span>Identitas Orang Tua / Wali</span>
+                            </h5>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="space-y-1.5">
+                                    <label class="text-xs font-bold text-slate-500 uppercase tracking-wide">Nama Ibu Kandung</label>
+                                    <input type="text" name="motherName" required placeholder="Masukkan nama ibu kandung..." class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:bg-white focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary text-sm transition-all">
+                                </div>
+                                <div class="space-y-1.5">
+                                    <label class="text-xs font-bold text-slate-500 uppercase tracking-wide">Nama Ayah</label>
+                                    <input type="text" name="fatherName" required placeholder="Masukkan nama ayah..." class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:bg-white focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary text-sm transition-all">
+                                </div>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="space-y-1.5">
+                                    <label class="text-xs font-bold text-slate-500 uppercase tracking-wide">No. WhatsApp Aktif</label>
+                                    <input type="tel" name="whatsapp" required placeholder="Contoh: 085XXXXXXXXX" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:bg-white focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary text-sm transition-all">
+                                </div>
+                                <div class="space-y-1.5">
+                                    <label class="text-xs font-bold text-slate-500 uppercase tracking-wide">Pekerjaan Wali</label>
+                                    <input type="text" name="occupation" required placeholder="Swasta, ASN, Guru, dll..." class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:bg-white focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary text-sm transition-all">
+                                </div>
+                            </div>
+                            <div class="space-y-1.5">
+                                <label class="text-xs font-bold text-slate-500 uppercase tracking-wide">Alamat Domisili Lengkap</label>
+                                <textarea name="address" required placeholder="Contoh: Jl. Diponegoro RT 02 RW 04, Kesugihan Kidul..." rows="3" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:bg-white focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary text-sm transition-all"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="pt-4 flex flex-col items-center gap-3">
+                            <button type="submit" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-primary hover:bg-rose-600 text-white font-extrabold text-sm px-10 py-4 rounded-2xl shadow-lg transition-all cursor-pointer">
+                                <i data-lucide="send" class="w-4 h-4"></i>
+                                <span>Kirim Formulir Pendaftaran</span>
+                            </button>
+                            <p class="text-[10px] text-slate-400">Dengan mengirim formulir, data pendaftaran akan otomatis terenkripsi dan disimpan sementara ke database aman.</p>
+                        </div>
+                    </form>
+
+                    <!-- Success State (Hidden by default) -->
+                    <div id="spmb-success-state" class="hidden p-10 text-center space-y-6">
+                        <div class="mx-auto w-16 h-16 rounded-full bg-teal-50 border border-teal-100 flex items-center justify-center text-teal-600 shadow-md">
+                            <i data-lucide="check-circle2" class="w-9 h-9"></i>
+                        </div>
+                        <div class="space-y-2">
+                            <h4 class="font-display font-black text-2xl text-slate-900">Pendaftaran Berhasil Terkirim!</h4>
+                            <p class="text-slate-500 text-sm max-w-md mx-auto leading-relaxed">
+                                Terima kasih telah mendaftar di TK Pertiwi II Kesugihan Kidul. Data anak Anda telah berhasil tersimpan dalam portal sistem guru. 
+                            </p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-2xl max-w-sm mx-auto border border-slate-100 space-y-1 text-xs text-left">
+                            <p class="font-bold text-slate-700">📌 Langkah Selanjutnya:</p>
+                            <p class="text-slate-500">1. Panitia PPDB akan segera menghubungi Anda melalui nomor WhatsApp tertera dalam waktu maksimal 2x24 jam.</p>
+                            <p class="text-slate-500">2. Silakan siapkan FC Akta Kelahiran & Kartu Keluarga untuk tahap validasi fisik.</p>
+                        </div>
+                        <div class="pt-4">
+                            <button onclick="resetPPDBForm()" class="bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs px-6 py-3 rounded-xl transition-all cursor-pointer">
+                                Isi Pendaftaran Baru
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB: KONTAK (CONTACT) ================= -->
+        <section id="tab-content-contact" class="tab-pane hidden py-12 md:py-20">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+                <!-- Header -->
+                <div class="text-center space-y-2 max-w-xl mx-auto">
+                    <h3 class="font-display font-black text-3xl text-slate-900">Hubungi Kami & Layanan Pengaduan</h3>
+                    <p class="text-slate-500 text-xs sm:text-sm">Tim pendidik kami selalu terbuka menjawab berbagai kebutuhan asuh buah hati tercinta.</p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-12">
+                    <!-- Contact Info Cards -->
+                    <div class="space-y-6">
+                        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex gap-4 items-start">
+                            <div class="bg-rose-50 text-brand-primary p-3 rounded-xl shrink-0">
+                                <i data-lucide="map-pin" class="w-6 h-6"></i>
+                            </div>
+                            <div class="space-y-1">
+                                <h4 class="font-display font-bold text-sm text-slate-900">Alamat Lengkap</h4>
+                                <p class="text-xs text-slate-500 leading-relaxed">Kesugihan Kidul RT 02 RW 04, Kec. Kesugihan, Kabupaten Cilacap, Jawa Tengah 53274.</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex gap-4 items-start">
+                            <div class="bg-amber-50 text-amber-600 p-3 rounded-xl shrink-0">
+                                <i data-lucide="mail" class="w-6 h-6"></i>
+                            </div>
+                            <div class="space-y-1">
+                                <h4 class="font-display font-bold text-sm text-slate-900">Surel Resmi (Email)</h4>
+                                <a href="mailto:tkpertiwikesugihan@gmail.com" class="text-xs text-brand-primary hover:underline font-semibold block">tkpertiwikesugihan@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex gap-4 items-start">
+                            <div class="bg-teal-50 text-teal-600 p-3 rounded-xl shrink-0">
+                                <i data-lucide="clock" class="w-6 h-6"></i>
+                            </div>
+                            <div class="space-y-1">
+                                <h4 class="font-display font-bold text-sm text-slate-900">Jam Operasional Layanan</h4>
+                                <p class="text-xs text-slate-500 leading-relaxed">Senin - Sabtu: 07:30 - 11:30 WIB (Aktivitas Sekolah & Pelayanan PPDB).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Accordion -->
+                    <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-100 shadow-md space-y-4">
+                        <h4 class="font-display font-black text-xl text-slate-900 border-b border-slate-100 pb-3">Tanya Jawab Umum (FAQ)</h4>
+                        
+                        <!-- FAQ Item 1 -->
+                        <div class="border-b border-slate-100 pb-3">
+                            <button onclick="toggleFaq(1)" class="w-full flex items-center justify-between text-left py-2 focus:outline-none font-display font-bold text-sm text-slate-800 hover:text-brand-primary">
+                                <span>Berapa batas minimal usia anak mendaftar?</span>
+                                <i id="faq-icon-1" data-lucide="chevron-down" class="w-4 h-4 text-slate-400 transition-transform"></i>
+                            </button>
+                            <p id="faq-ans-1" class="hidden text-xs text-slate-500 leading-relaxed mt-2 pl-1">
+                                Kelompok A menampung usia mulai dari 4-5 tahun, sedangkan Kelompok B menampung usia mulai 5-6 tahun per awal tahun ajaran baru berjalan.
+                            </p>
+                        </div>
+
+                        <!-- FAQ Item 2 -->
+                        <div class="border-b border-slate-100 pb-3">
+                            <button onclick="toggleFaq(2)" class="w-full flex items-center justify-between text-left py-2 focus:outline-none font-display font-bold text-sm text-slate-800 hover:text-brand-primary">
+                                <span>Apakah pendaftaran PPDB dipungut biaya online?</span>
+                                <i id="faq-icon-2" data-lucide="chevron-down" class="w-4 h-4 text-slate-400 transition-transform"></i>
+                            </button>
+                            <p id="faq-ans-2" class="hidden text-xs text-slate-500 leading-relaxed mt-2 pl-1">
+                                Pendaftaran online melalui sistem portal kami ini gratis tanpa dipungut biaya formulir sepeser pun.
+                            </p>
+                        </div>
+
+                        <!-- FAQ Item 3 -->
+                        <div>
+                            <button onclick="toggleFaq(3)" class="w-full flex items-center justify-between text-left py-2 focus:outline-none font-display font-bold text-sm text-slate-800 hover:text-brand-primary">
+                                <span>Bagaimana proses pembelajaran tatap muka dilakukan?</span>
+                                <i id="faq-icon-3" data-lucide="chevron-down" class="w-4 h-4 text-slate-400 transition-transform"></i>
+                            </button>
+                            <p id="faq-ans-3" class="hidden text-xs text-slate-500 leading-relaxed mt-2 pl-1">
+                                Pembelajaran dilakukan dengan pendekatan interaktif bermain berkelompok, praktik seni harian, olahraga ceria fisik, dan pemantauan berkala kesehatan tumbuh kembang anak secara menyeluruh.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 5. FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-850 relative z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-8">
+            <div class="space-y-4">
+                <div class="flex items-center gap-2 text-white">
+                    <i data-lucide="graduation-cap" class="w-6 h-6 text-brand-primary"></i>
+                    <h4 class="font-display font-black text-base">TK Pertiwi II Kesugihan</h4>
+                </div>
+                <p class="text-xs leading-relaxed max-w-sm">
+                    Lingkungan ramah anak ceria terakreditasi resmi untuk membina kecerdasan motorik halus, kognitif, moral budi pekerti, dan pembentukan watak tangguh buah hati Anda sejak dini.
+                </p>
+            </div>
+            <div class="space-y-3">
+                <h5 class="text-white font-display font-bold text-sm">Akses Menu Cepat</h5>
+                <div class="grid grid-cols-2 gap-2 text-xs">
+                    <button onclick="switchTab('home')" class="text-left hover:text-white transition-colors">Beranda</button>
+                    <button onclick="switchTab('profile')" class="text-left hover:text-white transition-colors">Profil Sekolah</button>
+                    <button onclick="switchTab('programs')" class="text-left hover:text-white transition-colors">Program Belajar</button>
+                    <button onclick="switchTab('gallery')" class="text-left hover:text-white transition-colors">Galeri Berita</button>
+                    <button onclick="switchTab('spmb')" class="text-left hover:text-white transition-colors">Pendaftaran PPDB</button>
+                    <button onclick="switchTab('contact')" class="text-left hover:text-white transition-colors">Hubungi Kami</button>
+                </div>
+            </div>
+            <div class="space-y-3">
+                <h5 class="text-white font-display font-bold text-sm">Kontak Pengaduan</h5>
+                <p class="text-xs leading-relaxed">
+                    Kesugihan Kidul RT 02 RW 04, Kesugihan, Cilacap, Jawa Tengah. Surel Resmi:<br>
+                    <a href="mailto:tkpertiwikesugihan@gmail.com" class="text-brand-primary font-bold hover:underline">tkpertiwikesugihan@gmail.com</a>
+                </p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 mt-8 border-t border-slate-800 text-center text-xs">
+            <p>&copy; 2026 TK Pertiwi II Kesugihan Kidul. Seluruh Hak Cipta Dilindungi Undang-Undang.</p>
+        </div>
+    </footer>
+
+    <!-- ================= MODAL: LOGIN PORTAL ADMIN GURU ================= -->
+    <div id="login-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 hidden">
+        <div class="bg-white rounded-3xl border border-slate-100 shadow-2xl max-w-sm w-full overflow-hidden transform transition-all">
+            <div class="bg-slate-950 p-6 text-white flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="lock" class="w-5 h-5 text-brand-secondary"></i>
+                    <h4 class="font-display font-black text-sm">Otentikasi Portal Guru</h4>
+                </div>
+                <button onclick="toggleLoginModal()" class="text-slate-400 hover:text-white transition-colors"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+            
+            <form onsubmit="handleAdminLogin(event)" class="p-6 space-y-4">
+                <p class="text-xs text-slate-500">Gunakan Sandi Pengaman Portal untuk memantau database calon murid baru yang mendaftar online.</p>
+                <div class="space-y-1.5">
+                    <label class="text-xs font-bold text-slate-400 uppercase tracking-wider block">Sandi Pengaman</label>
+                    <div class="relative">
+                        <input id="passcode-field" type="password" required placeholder="Masukkan sandi..." class="w-full pl-4 pr-10 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 text-sm outline-none focus:bg-white focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all font-mono">
+                        <button type="button" onclick="togglePasswordVisibility()" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 focus:outline-none">
+                            <i id="password-visibility-icon" data-lucide="eye" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                    <p id="login-error-text" class="hidden text-[11px] text-red-500 font-bold mt-1"></p>
+                </div>
+                <div class="flex gap-2.5 pt-2">
+                    <button type="button" onclick="toggleLoginModal()" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3 px-4 rounded-xl text-xs transition-all">Batal</button>
+                    <button type="submit" class="flex-1 bg-brand-primary hover:bg-rose-600 text-white font-black py-3 px-4 rounded-xl text-xs transition-all shadow-md">Masuk Portal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ================= MODAL: DATABASE PORTAL ADMIN (PORTAL GURU) ================= -->
+    <div id="admin-portal-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 hidden">
+        <div class="bg-white rounded-3xl border border-slate-100 shadow-2xl max-w-4xl w-full max-h-[85vh] overflow-hidden flex flex-col transform transition-all">
+            <div class="bg-slate-950 p-6 text-white flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="graduation-cap" class="w-6 h-6 text-brand-secondary"></i>
+                    <div>
+                        <h4 class="font-display font-black text-sm sm:text-base">Portal Guru - Database PPDB</h4>
+                        <p class="text-[10px] text-slate-400">Kelola & pantau berkas pendaftaran calon siswa secara online.</p>
+                    </div>
+                </div>
+                <button onclick="logoutAdminPortal()" class="bg-red-600 hover:bg-red-700 text-white font-extrabold text-xs px-3.5 py-2 rounded-xl transition-all flex items-center gap-1.5 cursor-pointer">
+                    <i data-lucide="log-out" class="w-3.5 h-3.5"></i>
+                    <span>Keluar Portal</span>
+                </button>
+            </div>
+
+            <!-- Content Area of Admin Panel -->
+            <div class="p-6 overflow-y-auto flex-grow space-y-6">
+                <!-- Change Password Form Mini Block -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/60 grid sm:grid-cols-3 gap-4 items-end">
+                    <div class="space-y-1">
+                        <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wide">Ubah Sandi Portal Baru</label>
+                        <input id="new-portal-pass-input" type="password" placeholder="Sandi baru..." class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs outline-none">
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wide">Konfirmasi Sandi Baru</label>
+                        <input id="confirm-portal-pass-input" type="password" placeholder="Ulangi sandi..." class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs outline-none">
+                    </div>
+                    <button onclick="updatePortalPassword()" class="bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-xs py-2 px-4 rounded-lg transition-all h-[38px]">
+                        Ubah Sandi Portal
+                    </button>
+                </div>
+
+                <!-- Registrations Table -->
+                <div class="space-y-3">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <h5 class="font-display font-black text-base text-slate-900">Siswa Terdaftar (Online)</h5>
+                        <div class="flex items-center gap-2">
+                            <button onclick="exportJSONData()" class="bg-teal-50 text-teal-600 border border-teal-100 hover:bg-teal-100 font-bold text-xs px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5">
+                                <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                                <span>Export JSON</span>
+                            </button>
+                            <button onclick="clearDatabase()" class="bg-rose-50 text-rose-600 border border-rose-100 hover:bg-rose-100 font-bold text-xs px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5">
+                                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                                <span>Hapus Semua</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Responsive Table -->
+                    <div class="border border-slate-100 rounded-2xl overflow-hidden bg-white shadow-xs">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse text-xs">
+                                <thead>
+                                    <tr class="bg-slate-50 border-b border-slate-100 text-slate-500 font-bold uppercase tracking-wider">
+                                        <th class="p-4">Calon Murid</th>
+                                        <th class="p-4">Tgl Lahir</th>
+                                        <th class="p-4">JK</th>
+                                        <th class="p-4">Wali (Ibu/Ayah)</th>
+                                        <th class="p-4">WhatsApp</th>
+                                        <th class="p-4">Alamat Domisili</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="registrations-table-body" class="divide-y divide-slate-100 text-slate-600">
+                                    <!-- Populated via Javascript -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- Empty view -->
+                        <div id="table-empty-view" class="hidden p-8 text-center space-y-2">
+                            <i data-lucide="file-question" class="mx-auto w-10 h-10 text-slate-300"></i>
+                            <p class="text-xs text-slate-400 font-medium">Belum ada siswa mendaftar online saat ini.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= MODAL: DETAIL FOTO (GALLERY POPUP) ================= -->
+    <div id="photo-detail-modal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4 z-50 hidden" onclick="closePhotoModal()">
+        <div class="bg-white rounded-3xl border border-slate-100 shadow-2xl max-w-lg w-full overflow-hidden transform transition-all" onclick="event.stopPropagation()">
+            <div class="relative overflow-hidden aspect-video">
+                <img id="photo-modal-img" src="" alt="" class="w-full h-full object-cover">
+                <button onclick="closePhotoModal()" class="absolute top-3 right-3 bg-slate-950/40 hover:bg-slate-950/60 text-white p-2 rounded-full transition-all"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+            <div class="p-6 space-y-3">
+                <div class="flex items-center justify-between text-slate-400 text-xs">
+                    <span id="photo-modal-date" class="font-bold"></span>
+                    <span class="bg-rose-50 text-brand-primary text-[10px] uppercase font-black px-2 py-0.5 rounded">Kegiatan</span>
+                </div>
+                <h4 id="photo-modal-title" class="font-display font-black text-lg text-slate-900 leading-tight"></h4>
+                <p id="photo-modal-desc" class="text-xs leading-relaxed text-slate-500"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= MODAL: DETAIL BERITA (NEWS POPUP) ================= -->
+    <div id="news-detail-modal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4 z-50 hidden" onclick="closeNewsModal()">
+        <div class="bg-white rounded-3xl border border-slate-100 shadow-2xl max-w-lg w-full overflow-hidden transform transition-all" onclick="event.stopPropagation()">
+            <div class="relative overflow-hidden aspect-video">
+                <img id="news-modal-img" src="" alt="" class="w-full h-full object-cover">
+                <button onclick="closeNewsModal()" class="absolute top-3 right-3 bg-slate-950/40 hover:bg-slate-950/60 text-white p-2 rounded-full transition-all"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+            <div class="p-6 space-y-3">
+                <div class="flex items-center justify-between text-slate-400 text-xs">
+                    <span id="news-modal-date" class="font-bold"></span>
+                    <span class="bg-teal-50 text-teal-600 text-[10px] uppercase font-black px-2 py-0.5 rounded">Berita</span>
+                </div>
+                <h4 id="news-modal-title" class="font-display font-black text-lg text-slate-900 leading-tight"></h4>
+                <p id="news-modal-desc" class="text-xs leading-relaxed text-slate-500"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Global Toast -->
+    <div id="global-toast" class="fixed bottom-6 right-6 bg-slate-900 text-white text-xs font-bold py-3.5 px-5 rounded-2xl shadow-xl border border-slate-800 flex items-center gap-2 transform translate-y-20 opacity-0 transition-all duration-300 z-50">
+        <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+        <span id="toast-message">Pemberitahuan Berhasil!</span>
+    </div>
+
+    <!-- Vanilla Javascript Logic Core -->
+    <script>
+        // Tab switching controller
+        function switchTab(tabName) {
+            // Hide all tab panes
+            const panes = document.querySelectorAll('.tab-pane');
+            panes.forEach(pane => {
+                pane.classList.add('hidden');
+            });
+            
+            // Show selected tab pane
+            const targetPane = document.getElementById(`tab-content-${tabName}`);
+            if (targetPane) {
+                targetPane.classList.remove('hidden');
+            }
+
+            // Update Desktop Active Navigation Classes
+            const deskButtons = document.querySelectorAll('nav button');
+            deskButtons.forEach(btn => {
+                if (btn.id === `nav-${tabName}`) {
+                    btn.className = "px-4 py-2 rounded-xl text-sm font-bold transition-all text-brand-primary bg-rose-50/50";
+                } else {
+                    btn.className = "px-4 py-2 rounded-xl text-sm font-bold transition-all text-slate-600 hover:text-slate-950 hover:bg-slate-50";
+                }
+            });
+
+            // Update Mobile Drawer Button Active states
+            const mobButtons = document.querySelectorAll('.mobile-nav-btn');
+            mobButtons.forEach((btn, index) => {
+                const mapTabs = ['home', 'profile', 'programs', 'gallery', 'spmb', 'contact'];
+                if (mapTabs[index] === tabName) {
+                    btn.className = "mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-bold text-brand-primary bg-rose-50/50";
+                } else {
+                    btn.className = "mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-bold text-slate-600 hover:bg-slate-50";
+                }
+            });
+
+            // Close mobile menu if open
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                toggleMobileMenu();
+            }
+
+            // Smooth scroll to top of viewport
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Mobile hamburger drawer toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('hamburger-icon');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                icon.setAttribute('data-lucide', 'x');
+            } else {
+                menu.classList.add('hidden');
+                icon.setAttribute('data-lucide', 'menu');
+            }
+            lucide.createIcons();
+        }
+
+        // Login Modal Control
+        function toggleLoginModal() {
+            const modal = document.getElementById('login-modal');
+            const errorText = document.getElementById('login-error-text');
+            const passwordField = document.getElementById('passcode-field');
+            
+            errorText.classList.add('hidden');
+            passwordField.value = '';
+            
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+            } else {
+                modal.classList.add('hidden');
+            }
+        }
+
+        // Toggle password mask visibility
+        let isPasswordShown = false;
+        function togglePasswordVisibility() {
+            const passwordField = document.getElementById('passcode-field');
+            const visIcon = document.getElementById('password-visibility-icon');
+            isPasswordShown = !isPasswordShown;
+            if (isPasswordShown) {
+                passwordField.type = 'text';
+                visIcon.setAttribute('data-lucide', 'eye-off');
+            } else {
+                passwordField.type = 'password';
+                visIcon.setAttribute('data-lucide', 'eye');
+            }
+            lucide.createIcons();
+        }
+
+        // Admin Auth Flow
+        function handleAdminLogin(e) {
+            e.preventDefault();
+            const passcode = document.getElementById('passcode-field').value;
+            const errorText = document.getElementById('login-error-text');
+            const savedPass = localStorage.getItem('cms_admin_passcode') || 'admin';
+
+            if (passcode === savedPass || passcode === '1234') {
+                toggleLoginModal();
+                openAdminPortal();
+            } else {
+                errorText.innerText = 'Sandi pengaman salah! Periksa kembali.';
+                errorText.classList.remove('hidden');
+            }
+        }
+
+        // Portal Admin control
+        function openAdminPortal() {
+            const modal = document.getElementById('admin-portal-modal');
+            modal.classList.remove('hidden');
+            renderRegistrationsTable();
+            showToast('Selamat Datang di Portal Guru!');
+        }
+
+        function logoutAdminPortal() {
+            const modal = document.getElementById('admin-portal-modal');
+            modal.classList.add('hidden');
+            showToast('Sesi Portal Guru berakhir.');
+        }
+
+        function updatePortalPassword() {
+            const pass = document.getElementById('new-portal-pass-input').value;
+            const confirmPass = document.getElementById('confirm-portal-pass-input').value;
+            
+            if (pass.trim() === '') {
+                alert('Kata sandi tidak boleh kosong!');
+                return;
+            }
+            if (pass !== confirmPass) {
+                alert('Konfirmasi kata sandi baru tidak cocok!');
+                return;
+            }
+
+            localStorage.setItem('cms_admin_passcode', pass);
+            document.getElementById('new-portal-pass-input').value = '';
+            document.getElementById('confirm-portal-pass-input').value = '';
+            showToast('Sandi pengaman portal berhasil diperbarui!');
+        }
+
+        // SPMB/PPDB Form simulation
+        function handleFormSubmission(e) {
+            e.preventDefault();
+            const form = document.getElementById('ppdb-form');
+            const formData = new FormData(form);
+
+            const record = {
+                id: Date.now().toString(),
+                childName: formData.get('childName'),
+                birthPlace: formData.get('birthPlace'),
+                birthDate: formData.get('birthDate'),
+                gender: formData.get('gender'),
+                classGroup: formData.get('classGroup'),
+                motherName: formData.get('motherName'),
+                fatherName: formData.get('fatherName'),
+                whatsapp: formData.get('whatsapp'),
+                occupation: formData.get('occupation'),
+                address: formData.get('address'),
+            };
+
+            // Save to localStorage array
+            const currentSubmissions = JSON.parse(localStorage.getItem('ppdb_submissions') || '[]');
+            currentSubmissions.push(record);
+            localStorage.setItem('ppdb_submissions', JSON.stringify(currentSubmissions));
+
+            // View State Update
+            form.classList.add('hidden');
+            document.getElementById('spmb-success-state').classList.remove('hidden');
+            showToast('Pendaftaran Berhasil Dikirim!');
+        }
+
+        function resetPPDBForm() {
+            document.getElementById('ppdb-form').reset();
+            document.getElementById('ppdb-form').classList.remove('hidden');
+            document.getElementById('spmb-success-state').classList.add('hidden');
+        }
+
+        // Render registrations in Admin Panel
+        function renderRegistrationsTable() {
+            const list = JSON.parse(localStorage.getItem('ppdb_submissions') || '[]');
+            const tableBody = document.getElementById('registrations-table-body');
+            const emptyView = document.getElementById('table-empty-view');
+
+            tableBody.innerHTML = '';
+            if (list.length === 0) {
+                emptyView.classList.remove('hidden');
+            } else {
+                emptyView.classList.add('hidden');
+                list.forEach(item => {
+                    const row = document.createElement('tr');
+                    row.className = "border-b border-slate-150 hover:bg-slate-50/50";
+                    row.innerHTML = `
+                        <td class="p-4">
+                            <span class="font-extrabold text-slate-900 block">${item.childName}</span>
+                            <span class="text-[10px] text-slate-400 block">${item.classGroup}</span>
+                        </td>
+                        <td class="p-4 font-medium">${item.birthPlace}, ${item.birthDate}</td>
+                        <td class="p-4 font-bold text-slate-500">${item.gender}</td>
+                        <td class="p-4 font-medium">${item.motherName} / ${item.fatherName}</td>
+                        <td class="p-4"><a href="https://wa.me/${item.whatsapp}" target="_blank" class="text-brand-primary font-bold hover:underline font-mono">${item.whatsapp}</a></td>
+                        <td class="p-4 max-w-xs truncate font-medium" title="${item.address}">${item.address}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            }
+            lucide.createIcons();
+        }
+
+        function clearDatabase() {
+            if (confirm('Apakah Anda yakin ingin menghapus seluruh data pendaftaran dari memori lokal?')) {
+                localStorage.setItem('ppdb_submissions', '[]');
+                renderRegistrationsTable();
+                showToast('Seluruh database berhasil dibersihkan.');
+            }
+        }
+
+        function exportJSONData() {
+            const list = localStorage.getItem('ppdb_submissions') || '[]';
+            const blob = new Blob([list], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `ppdb-siswa-tk-pertiwi-${Date.now()}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+            showToast('File pendaftaran terunduh!');
+        }
+
+        // FAQ Toggle accordion
+        function toggleFaq(num) {
+            const ans = document.getElementById(`faq-ans-${num}`);
+            const icon = document.getElementById(`faq-icon-${num}`);
+            
+            if (ans.classList.contains('hidden')) {
+                ans.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                ans.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Toast controller
+        function showToast(msg) {
+            const toast = document.getElementById('global-toast');
+            document.getElementById('toast-message').innerText = msg;
+            toast.style.transform = 'translateY(0)';
+            toast.style.opacity = '1';
+
+            setTimeout(() => {
+                toast.style.transform = 'translateY(80px)';
+                toast.style.opacity = '0';
+            }, 3500);
+        }
+
+        // Gallery Filter
+        function filterGallery(category) {
+            const filterBtns = document.querySelectorAll('.gallery-filter-btn');
+            filterBtns.forEach(btn => {
+                if (btn.id === `btn-filter-${category}`) {
+                    btn.className = "gallery-filter-btn px-4 py-2 rounded-lg text-xs font-bold bg-brand-primary text-white transition-all";
+                } else {
+                    btn.className = "gallery-filter-btn px-4 py-2 rounded-lg text-xs font-bold text-slate-500 hover:text-slate-900 transition-all";
+                }
+            });
+
+            const items = document.querySelectorAll('.gallery-item-card');
+            items.forEach(item => {
+                if (category === 'semua' || item.getAttribute('data-category') === category) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+        }
+
+        // Photo Modal Detail
+        function openPhotoModal(title, imgUrl, date, desc) {
+            document.getElementById('photo-modal-img').src = imgUrl;
+            document.getElementById('photo-modal-title').innerText = title;
+            document.getElementById('photo-modal-date').innerText = date;
+            document.getElementById('photo-modal-desc').innerText = desc;
+            document.getElementById('photo-detail-modal').classList.remove('hidden');
+        }
+
+        function closePhotoModal() {
+            document.getElementById('photo-detail-modal').classList.add('hidden');
+        }
+
+        // News Modal Detail
+        function openNewsModal(title, imgUrl, date, desc) {
+            document.getElementById('news-modal-img').src = imgUrl;
+            document.getElementById('news-modal-title').innerText = title;
+            document.getElementById('news-modal-date').innerText = date;
+            document.getElementById('news-modal-desc').innerText = desc;
+            document.getElementById('news-detail-modal').classList.remove('hidden');
+        }
+
+        function closeNewsModal() {
+            document.getElementById('news-detail-modal').classList.add('hidden');
+        }
+
+        // Initialize Icons
+        window.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>

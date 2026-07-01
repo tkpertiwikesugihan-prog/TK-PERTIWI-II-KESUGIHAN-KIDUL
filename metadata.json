@@ -1,6 +1,0 @@
-{
-  "name": "TK Pertiwi II Kesugihan",
-  "description": "Official website of Taman Kanak-Kanak Pertiwi II Kesugihan. Membangun Karakter, Kreativitas, dan Kemandirian Anak Sejak Dini.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}
